@@ -1,0 +1,173 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5744,        163]
+NotebookOptionsPosition[      5454,        148]
+NotebookOutlinePosition[      5809,        164]
+CellTagsIndexPosition[      5766,        161]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["\"\<Can you get 24 using only basic operations (+,-,*,/) on 4 \
+numbers?\>\""], "Input",
+ CellChangeTimes->{{3.657046700887279*^9, 3.6570467415437193`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"find24", "[", 
+    RowBox[{"{", 
+     RowBox[{"a_", ",", "b_", ",", "c_", ",", "d_"}], "}"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"h", ",", "v", ",", "q"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"q", "[", 
+        RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"y", "\[Equal]", "0"}], ",", "Null", ",", 
+         RowBox[{"x", "/", "y"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"v", "[", 
+        RowBox[{"o_", ",", "n1_", ",", "n2_"}], "]"}], ":=", 
+       RowBox[{"o", "[", 
+        RowBox[{"n1", ",", "n2"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"h", "[", 
+        RowBox[{"m_", ",", "m_", ",", "num_"}], "]"}], ":=", 
+       RowBox[{"{", 
+        RowBox[{"num", "[", 
+         RowBox[{"[", "m", "]"}], "]"}], "}"}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{
+       RowBox[{"h", "[", 
+        RowBox[{"s_", ",", "f_", ",", "num_"}], "]"}], ":=", 
+       RowBox[{
+        RowBox[{"h", "[", 
+         RowBox[{"s", ",", "f", ",", "num"}], "]"}], "=", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Outer", "[", 
+            RowBox[{"F", ",", 
+             RowBox[{"{", 
+              RowBox[{"Plus", ",", "Subtract", ",", "Times", ",", "q"}], 
+              "}"}], ",", 
+             RowBox[{"h", "[", 
+              RowBox[{"s", ",", "i", ",", "num"}], "]"}], ",", 
+             RowBox[{"h", "[", 
+              RowBox[{
+               RowBox[{"i", "+", "1"}], ",", "f", ",", "num"}], "]"}]}], 
+            "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "s", ",", 
+             RowBox[{"f", "-", "1"}]}], "}"}]}], "]"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"funToV", " ", "=", " ", 
+       RowBox[{"F", "\[Rule]", "v"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"intToStringRule", " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"q", "\[Rule]", "Divide"}], ",", 
+         RowBox[{"n_Integer", "\[RuleDelayed]", 
+          RowBox[{"ToString", "[", "n", "]"}]}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"t", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{"#", "&"}], ",", 
+           RowBox[{"Select", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Map", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"h", "[", 
+                  RowBox[{"1", ",", "4", ",", "#"}], "]"}], "&"}], ",", 
+                RowBox[{"Permutations", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"a", ",", "b", ",", "c", ",", "d"}], "}"}], "]"}]}],
+                "]"}], "//", "Flatten"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"#", "/.", "mapToV"}], ")"}], "\[Equal]", "24"}], 
+              "&"}]}], "]"}]}], "]"}], ")"}], "//.", "intToStringRule"}]}], 
+      ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"combineOp", " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"F", "[", 
+          RowBox[{"o_", ",", "j_", ",", "k_"}], "]"}], "\[RuleDelayed]", 
+         RowBox[{"o", "[", 
+          RowBox[{"j", ",", "k"}], "]"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"multShow", " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Times", "[", 
+          RowBox[{"a1_String", ",", "b1_String"}], "]"}], "\[RuleDelayed]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<(\>\"", ",", "a1", ",", "\"\<\[Times]\>\"", ",", "b1", ",", 
+            "\"\<)\>\""}], "}"}], "]"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"Append", "[", 
+        RowBox[{
+         RowBox[{"u", "=", 
+          RowBox[{
+           RowBox[{"Union", "[", 
+            RowBox[{"t", "//.", "combineOp"}], "]"}], "//.", "multShow"}]}], 
+         ",", 
+         RowBox[{
+          RowBox[{"ToString", "[", 
+           RowBox[{"Length", "[", "u", "]"}], "]"}], "<>", 
+          "\"\< solutions\>\""}]}], "]"}], "]"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.657046767218471*^9, 3.657046818245776*^9, {3.657047252351411*^9, 
+   3.657047315383766*^9}, {3.657048717820692*^9, 3.6570487190937366`*^9}, {
+   3.657049586797151*^9, 3.657049599369708*^9}, {3.657049652760315*^9, 
+   3.6570496533182983`*^9}}]
+},
+WindowSize->{808, 905},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"10.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 23, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 170, 2, 28, "Input"],
+Cell[731, 24, 4719, 122, 403, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
